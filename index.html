@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fantasy Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    select {
+      padding: 8px;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: scale(1.03); }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card h3 { margin: 10px 0 5px; }
+    .stats { font-size: 14px; }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+    }
+    .close {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>⚽ Fantasy Amigos</h1>
+
+<div class="filters">
+  <select id="filterPosition">
+    <option value="">Todas las posiciones</option>
+    <option value="Portero">Portero</option>
+    <option value="Defensa">Defensa</option>
+    <option value="Centrocampista">Centrocampista</option>
+    <option value="Delantero">Delantero</option>
+  </select>
+
+  <select id="sortPoints">
+    <option value="">Ordenar por puntos</option>
+    <option value="desc">Más a menos</option>
+    <option value="asc">Menos a más</option>
+  </select>
+</div>
+
+<div class="grid" id="playersGrid"></div>
+
+<!-- Modal -->
+<div class="modal" id="playerModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const players = [
+  {
+    nombre: "Juan Pérez",
+    edad: 25,
+    posicion: "Delantero",
+    goles: 10,
+    asistencias: 4,
+    mvps: 2,
+    puntos: 85,
+    foto: "https://via.placeholder.com/300x300"
+  },
+  {
+    nombre: "Carlos Gómez",
+    edad: 27,
+    posicion: "Defensa",
+    goles: 2,
+    asistencias: 1,
+    mvps: 1,
+    puntos: 55,
+    foto: "https://via.placeholder.com/300x300"
+  }
+];
+
+const grid = document.getElementById("playersGrid");
+const filterPosition = document.getElementById("filterPosition");
+const sortPoints = document.getElementById("sortPoints");
+
+function renderPlayers(list) {
+  grid.innerHTML = "";
+  list.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${p.foto}" />
+      <h3>${p.nombre}</h3>
+      <div class="stats">
+        <b>${p.posicion}</b><br>
+        ⚽ Goles: ${p.goles}<br>
+        🎯 Asistencias: ${p.asistencias}<br>
+        ⭐ MVPs: ${p.mvps}<br>
+        🏆 Puntos: ${p.puntos}
+      </div>
+    `;
+    card.onclick = () => openModal(p);
+    grid.appendChild(card);
+  });
+}
+
+function applyFilters() {
+  let filtered = [...players];
+
+  if (filterPosition.value) {
+    filtered = filtered.filter(p => p.posicion === filterPosition.value);
+  }
+
+  if (sortPoints.value) {
+    filtered.sort((a,b) => sortPoints.value === "desc" ? b.puntos - a.puntos : a.puntos - b.puntos);
+  }
+
+  renderPlayers(filtered);
+}
+
+filterPosition.onchange = applyFilters;
+sortPoints.onchange = applyFilters;
+
+function openModal(p) {
+  document.getElementById("modalBody").innerHTML = `
+    <h2>${p.nombre}</h2>
+    <p><b>Edad:</b> ${p.edad}</p>
+    <p><b>Posición:</b> ${p.posicion}</p>
+    <p><b>Goles:</b> ${p.goles}</p>
+    <p><b>Asistencias:</b> ${p.asistencias}</p>
+    <p><b>MVPs:</b> ${p.mvps}</p>
+    <p><b>Puntos totales:</b> ${p.puntos}</p>
+  `;
+  document.getElementById("playerModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("playerModal").style.display = "none";
+}
+
+renderPlayers(players);
+</script>
+
+</body>
+</html>
