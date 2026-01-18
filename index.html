@@ -288,12 +288,11 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   const grid = document.getElementById('playersGrid');
-  
-  // Color según puntos y si no hay puntos
-  function puntosColor(jugador, puntos){
-    if(puntos === null) return '#9e9e9e'; // gris si no hay puntos
+
+  function puntosColor(puntos){
+    if(puntos === '-' || puntos === null) return '#9e9e9e'; // gris si no hay puntos
     if(puntos < 1) return '#f44336';
-    if(puntos >=1 && puntos <=5) return '#ff9800';
+    if(puntos <=5) return '#ff9800';
     if(puntos <=9) return '#4caf50';
     return '#2196f3';
   }
@@ -301,19 +300,18 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderPlayers(list, jornadaSeleccionada){
     grid.innerHTML = '';
     list.forEach(p=>{
-      let puntos = null;
-      let esMVP = false;
+      let puntos, esMVP;
 
-      if(jornadaSeleccionada){ // jornada específica
+      if(jornadaSeleccionada){
         puntos = p.puntosPorJornada[jornadaSeleccionada];
         esMVP = p.mvpsPorJornada[jornadaSeleccionada];
         if(puntos === 0) puntos = '-';
-      } else { // todas las jornadas
+      } else {
         puntos = Object.values(p.puntosPorJornada).reduce((a,b)=>a+b,0);
         esMVP = Object.values(p.mvpsPorJornada).some(v=>v);
       }
 
-      const color = puntos === '-' ? '#9e9e9e' : puntosColor(p,puntos);
+      const color = puntos === '-' ? '#9e9e9e' : puntosColor(puntos);
 
       const card = document.createElement('div');
       card.className = 'card';
@@ -355,36 +353,42 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterAndRender(){
     let filtered = players;
     const search = searchInput.value.toLowerCase();
-    if(search){ filtered = filtered.filter(p => p.nombre.toLowerCase().includes(search) || (p.apellido && p.apellido.toLowerCase().includes(search))); }
-    const position = filterPosition.value;
-    if(position){ filtered = filtered.filter(p=>p.posicion===position); }
-    const jornada = filterJornada.value ? Number(filterJornada.value) : null;
-    if(jornada){ filtered = filtered.filter(p=>p.jornadas.includes(jornada)); }
+    if(search){
+      filtered = filtered.filter(p => p.nombre.toLowerCase().includes(search) || (p.apellido && p.apellido.toLowerCase().includes(search)));
+    }
 
-    if(sortPoints.value==='asc'){ 
+    const position = filterPosition.value;
+    if(position) filtered = filtered.filter(p => p.posicion === position);
+
+    const jornada = filterJornada.value ? Number(filterJornada.value) : null;
+    if(jornada) filtered = filtered.filter(p => p.jornadas.includes(jornada));
+
+    if(sortPoints.value === 'asc'){
       filtered = filtered.slice().sort((a,b)=>{
         const aPts = jornada ? a.puntosPorJornada[jornada] : Object.values(a.puntosPorJornada).reduce((x,y)=>x+y,0);
         const bPts = jornada ? b.puntosPorJornada[jornada] : Object.values(b.puntosPorJornada).reduce((x,y)=>x+y,0);
-        return aPts-bPts;
+        return aPts - bPts;
       });
     }
-    if(sortPoints.value==='desc'){ 
+
+    if(sortPoints.value === 'desc'){
       filtered = filtered.slice().sort((a,b)=>{
         const aPts = jornada ? a.puntosPorJornada[jornada] : Object.values(a.puntosPorJornada).reduce((x,y)=>x+y,0);
         const bPts = jornada ? b.puntosPorJornada[jornada] : Object.values(b.puntosPorJornada).reduce((x,y)=>x+y,0);
-        return bPts-aPts;
+        return bPts - aPts;
       });
     }
 
     renderPlayers(filtered, jornada);
   }
 
-  searchInput.addEventListener('input',filterAndRender);
-  filterPosition.addEventListener('change',filterAndRender);
-  filterJornada.addEventListener('change',filterAndRender);
-  sortPoints.addEventListener('change',filterAndRender);
+  searchInput.addEventListener('input', filterAndRender);
+  filterPosition.addEventListener('change', filterAndRender);
+  filterJornada.addEventListener('change', filterAndRender);
+  sortPoints.addEventListener('change', filterAndRender);
 
-  renderPlayers(players); // inicial
+  // render inicial
+  renderPlayers(players);
 
   // =========================
   // Contraseña y desbloqueo
@@ -396,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const passwordButton = document.querySelector('.password-box button');
 
   function checkPassword() {
-    if (passwordInput.value === correctPassword) {
+    if(passwordInput.value === correctPassword){
       document.getElementById('passwordOverlay').style.display = 'none';
       mainContent.classList.remove('locked');
       passwordError.style.display = 'none';
@@ -411,6 +415,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 });
-
+</script>
 </body>
 </html>
