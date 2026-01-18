@@ -374,16 +374,21 @@ sortPoints.addEventListener('change',filterAndRender);
 // =========================
 // Contraseña y desbloqueo
 // =========================
-const correctPassword = "1234";
+const correctPassword = "1234"; // Cambia aquí tu contraseña
 const mainContent = document.getElementById('mainContent');
+
 function checkPassword(){
   const input = document.getElementById('passwordInput').value;
-  if(input===correctPassword){
-    document.getElementById('passwordOverlay').style.display='none';
-    mainContent.classList.remove('locked');
+  if(input === correctPassword){
+    document.getElementById('passwordOverlay').style.display = 'none';
+    mainContent.classList.remove('locked'); // Quita el blur y permite interacción
+    document.getElementById('passwordError').style.display = 'none';
   } else {
-    document.getElementById('passwordError').style.display='block';
+    document.getElementById('passwordError').style.display = 'block';
   }
 }
-document.getElementById('passwordInput').addEventListener('keypress',function(e){
-  if(e.key==='Enter
+
+// Validar al presionar Enter
+document.getElementById('passwordInput').addEventListener('keypress', function(e){
+  if(e.key === 'Enter') checkPassword();
+});
