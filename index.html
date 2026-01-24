@@ -104,16 +104,8 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 </head>
 <body>
 
-<div id="passwordOverlay">
-  <div class="password-box">
-    <h2>Introduce la contraseña</h2>
-    <input type="password" id="passwordInput" placeholder="Contraseña">
-    <button onclick="checkPassword()">Entrar</button>
-    <p id="passwordError" style="color:red; display:none;">Contraseña incorrecta</p>
-  </div>
-</div>
+<div id="mainContent">
 
-<div id="mainContent" class="locked">
 
 <h1>Poblamar League</h1>
 
@@ -311,27 +303,6 @@ searchInput.addEventListener('input',filterAndRender);
 filterPosition.addEventListener('change',filterAndRender);
 filterJornada.addEventListener('change',filterAndRender);
 sortPoints.addEventListener('change', filterAndRender);
-
-/* =========================
-   Contraseña y desbloqueo
-   ========================= */
-const correctPassword = "1234"; // Cambia a tu contraseña
-const mainContent = document.getElementById('mainContent');
-
-function checkPassword() {
-  const input = document.getElementById('passwordInput').value;
-  if(input === correctPassword){
-    document.getElementById('passwordOverlay').style.display = 'none';
-    mainContent.classList.remove('locked'); // Quita el blur
-  } else {
-    document.getElementById('passwordError').style.display = 'block';
-  }
-}
-
-// Presionar Enter también valida
-document.getElementById('passwordInput').addEventListener('keypress', function(e){
-  if(e.key === 'Enter') checkPassword();
-});
 
 /* =========================
    Cerrar modal al hacer click fuera del contenido
