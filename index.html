@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,6 +66,7 @@ input,select{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
   gap:15px;
+  justify-content:center;
 }
 .card{
   position:relative;
@@ -112,12 +112,6 @@ input,select{
   font-size:12px;
   font-weight:bold;
 }
-.mvp-flames{
-  position:absolute;
-  top:-35px;
-  right:-25px;
-  transform:scale(0.4);
-}
 
 /* ================= MODAL ================= */
 .modal{
@@ -136,6 +130,7 @@ input,select{
   border-radius:12px;
   max-width:400px;
   width:100%;
+  position:relative;
 }
 .close{
   position:absolute;
@@ -222,83 +217,126 @@ input,select{
 </div>
 
 <script>
+/* ================= DATOS JUGADORES ================= */
 const players = [
- {nombre:"Toni",apellido:"Valls",edad:19,posicion:"Centrocampista",goles:4,asistencias:4,mvps:0,puntos:21,jornada:21,mvp:false,amarillas:0,rojas:0,foto:"img/Toni.png",puntosPorJornada:{1:21,2:0,3:0}},
-  {nombre:"Unai",apellido:"Martinez",edad:19,posicion:"Delantero",goles:0,asistencias:1,mvps:0,puntos:1,jornada:1,mvp:false,amarillas:0,rojas:0,foto:"img/Unai.png",puntosPorJornada:{1:1,2:0,3:0}},
-  {nombre:"Sergio",apellido:"Jiménez",edad:19,posicion:"Delantero",goles:1,asistencias:0,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:1,rojas:0,foto:"img/Sergio.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Jaime",apellido:"del Rio",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,mvps:0,puntos:12,jornada:12,mvp:false,amarillas:1,rojas:0,foto:"img/Jaime.png",puntosPorJornada:{1:12,2:0,3:0}},
-  {nombre:"Hicham",apellido:"",edad:19,posicion:"Defensa",goles:1,asistencias:0,mvps:0,puntos:5,jornada:5,mvp:false,amarillas:0,rojas:0,foto:"img/Hicham.png",puntosPorJornada:{1:5,2:0,3:0}},
-  {nombre:"Sergi",apellido:"Castaño",edad:19,posicion:"Delantero",goles:3,asistencias:2,mvps:0,puntos:17,jornada:17,mvp:false,amarillas:0,rojas:0,foto:"img/Sergi.png",puntosPorJornada:{1:17,2:0,3:0}},
-  {nombre:"David",apellido:"Fernandez",edad:19,posicion:"Centrocampista",goles:2,asistencias:5,mvps:1,puntos:20,jornada:20,mvp:true,amarillas:1,rojas:0,foto:"img/David.png",puntosPorJornada:{1:20,2:0,3:0}},
-  {nombre:"Eloi",apellido:"Rey",edad:19,posicion:"Defensa",goles:2,asistencias:0,mvps:0,puntos:12,jornada:12,mvp:false,amarillas:1,rojas:0,foto:"img/Eloi2.png",puntosPorJornada:{1:12,2:0,3:0}},
-  {nombre:"Axel",apellido:"",edad:18,posicion:"Centrocampista",goles:2,asistencias:0,mvps:0,puntos:7,jornada:7,mvp:false,amarillas:2,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:7,2:0,3:0}},
-  {nombre:"Arnau",apellido:"Castaño",edad:17,posicion:"Centrocampista",goles:2,asistencias:0,mvps:0,puntos:11,jornada:11,mvp:false,amarillas:0,rojas:0,foto:"img/Arnau.png",puntosPorJornada:{1:11,2:0,3:0}},
-  {nombre:"Jose",apellido:"Romero",edad:16,posicion:"Centrocampista",goles:0,asistencias:0,mvps:0,puntos:1,jornada:1,mvp:false,amarillas:0,rojas:0,foto:"img/Jose.png",puntosPorJornada:{1:1,2:0,3:0}},
-  {nombre:"Marc",apellido:"Gutta",edad:19,posicion:"Defensa",goles:0,asistencias:1,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:1,rojas:0,foto:"img/Marc.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Ibu",apellido:"",edad:19,posicion:"Defensa",goles:0,asistencias:2,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:0,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Moha",apellido:"",edad:19,posicion:"Centrocampista",goles:0,asistencias:0,mvps:0,puntos:-3,jornada:-3,mvp:false,amarillas:3,rojas:1,foto:"img/Moha.png",puntosPorJornada:{1:-3,2:0,3:0}},
-  {nombre:"Gerard",apellido:"",edad:19,posicion:"Centrocampista",goles:1,asistencias:0,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:0,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Jan",apellido:"Martínez",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,mvps:0,puntos:10,jornada:10,mvp:false,amarillas:0,rojas:0,foto:"img/Jan.png",puntosPorJornada:{1:10,2:0,3:0}},
-  {nombre:"Aitor",apellido:"Borrallo",edad:19,posicion:"Delantero",goles:3,asistencias:1,mvps:0,puntos:18,jornada:18,mvp:false,amarillas:0,rojas:0,foto:"img/Aitor3.png",puntosPorJornada:{1:18,2:0,3:0}}
-];
+ {nombre:"Toni",apellido:"Valls",edad:19,posicion:"Centrocampista",goles:4,asistencias:4,puntos:21,foto:"img/Toni.png"},
+ {nombre:"Unai",apellido:"Martinez",edad:19,posicion:"Delantero",goles:0,asistencias:1,puntos:1,foto:"img/Unai.png"},
+ {nombre:"Sergio",apellido:"Jiménez",edad:19,posicion:"Delantero",goles:1,asistencias:0,puntos:4,foto:"img/Sergio.png"},
+ {nombre:"Jaime",apellido:"del Rio",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,puntos:12,foto:"img/Jaime.png"},
+ {nombre:"Hicham",apellido:"",edad:19,posicion:"Defensa",goles:1,asistencias:0,puntos:5,foto:"img/Hicham.png"},
+ {nombre:"Sergi",apellido:"Castaño",edad:19,posicion:"Delantero",goles:3,asistencias:2,puntos:17,foto:"img/Sergi.png"},
+ {nombre:"David",apellido:"Fernandez",edad:19,posicion:"Centrocampista",goles:2,asistencias:5,puntos:20,foto:"img/David.png"},
+ {nombre:"Eloi",apellido:"Rey",edad:19,posicion:"Defensa",goles:2,asistencias:0,puntos:12,foto:"img/Eloi2.png"},
+ {nombre:"Axel",apellido:"",edad:18,posicion:"Centrocampista",goles:2,asistencias:0,puntos:7,foto:"img/sinfoto2.png"},
+ {nombre:"Arnau",apellido:"Castaño",edad:17,posicion:"Centrocampista",goles:2,asistencias:0,puntos:11,foto:"img/Arnau.png"},
+ {nombre:"Jose",apellido:"Romero",edad:16,posicion:"Centrocampista",goles:0,asistencias:0,puntos:1,foto:"img/Jose.png"},
+ {nombre:"Marc",apellido:"Gutta",edad:19,posicion:"Defensa",goles:0,asistencias:1,puntos:4,foto:"img/Marc.png"},
+ {nombre:"Ibu",apellido:"",edad:19,posicion:"Defensa",goles:0,asistencias:2,puntos:4,foto:"img/sinfoto2.png"},
+ {nombre:"Moha",apellido:"",edad:19,posicion:"Centrocampista",goles:0,asistencias:0,puntos:-3,foto:"img/Moha.png"},
+ {nombre:"Gerard",apellido:"",edad:19,posicion:"Centrocampista",goles:1,asistencias:0,puntos:4,foto:"img/sinfoto2.png"},
+ {nombre:"Jan",apellido:"Martínez",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,puntos:10,foto:"img/Jan.png"},
+ {nombre:"Aitor",apellido:"Borrallo",edad:19,posicion:"Delantero",goles:3,asistencias:1,puntos:18,foto:"img/Aitor3.png"}
 ];
 
-const grid=document.getElementById('playersGrid');
+/* ================= RENDER JUGADORES ================= */
+const grid = document.getElementById("playersGrid");
 
 function renderPlayers(list){
- grid.innerHTML='';
- list.forEach(p=>{
-  const c=document.createElement('div');
-  c.className='card';
-  c.innerHTML=`
-   <img src="${p.foto}">
-   <h3>${p.nombre}</h3>
-   <div class="stats">${p.posicion}</div>
-   <div class="points-square" style="background:#2196f3">${p.puntos}</div>`;
-  c.onclick=()=>openModal(p);
-  grid.appendChild(c);
- });
+  grid.innerHTML="";
+  list.forEach(p=>{
+    const c=document.createElement("div");
+    c.className="card";
+    c.innerHTML=`
+      <img src="${p.foto}">
+      <h3>${p.nombre}</h3>
+      <div class="stats">${p.posicion}</div>
+      <div class="points-square" style="background:#2196f3">${p.puntos}</div>
+    `;
+    c.onclick=()=>openModal(p);
+    grid.appendChild(c);
+  });
 }
 renderPlayers(players);
 
+/* ================= MODAL ================= */
 function openModal(p){
- document.getElementById('modalBody').innerHTML=`
- <h2>${p.nombre} ${p.apellido}</h2>
- <p>Edad: ${p.edad}</p>
- <p>Goles: ${p.goles}</p>
- <p>Asistencias: ${p.asistencias}</p>`;
- document.getElementById('playerModal').style.display='flex';
+  document.getElementById("modalBody").innerHTML=`
+    <h2>${p.nombre} ${p.apellido}</h2>
+    <p><b>Edad:</b> ${p.edad}</p>
+    <p><b>Posición:</b> ${p.posicion}</p>
+    <p><b>Goles:</b> ${p.goles}</p>
+    <p><b>Asistencias:</b> ${p.asistencias}</p>
+    <p><b>Puntos:</b> ${p.puntos}</p>
+  `;
+  document.getElementById("playerModal").style.display="flex";
 }
 function closeModal(){
- document.getElementById('playerModal').style.display='none';
+  document.getElementById("playerModal").style.display="none";
 }
 
-/* NOTICIAS */
+/* ================= FILTROS ================= */
+const searchInput=document.getElementById("searchName");
+const filterPosition=document.getElementById("filterPosition");
+const sortPoints=document.getElementById("sortPoints");
+
+function filterAndRender(){
+  let filtered=[...players];
+  const search=searchInput.value.toLowerCase();
+  if(search){
+    filtered=filtered.filter(p =>
+      p.nombre.toLowerCase().includes(search) ||
+      (p.apellido && p.apellido.toLowerCase().includes(search))
+    );
+  }
+  if(filterPosition.value){
+    filtered=filtered.filter(p=>p.posicion===filterPosition.value);
+  }
+  if(sortPoints.value==="asc"){
+    filtered.sort((a,b)=>a.puntos-b.puntos);
+  }
+  if(sortPoints.value==="desc"){
+    filtered.sort((a,b)=>b.puntos-a.puntos);
+  }
+  renderPlayers(filtered);
+}
+
+searchInput.addEventListener("input",filterAndRender);
+filterPosition.addEventListener("change",filterAndRender);
+sortPoints.addEventListener("change",filterAndRender);
+
+/* ================= NOTICIAS ================= */
 const noticias=[
  {img:"img/noticia1.png",text:"David lidera la jornada con un partidazo."},
- {img:"img/noticia2.png",text:"Empieza la lucha por el Pichichi."},
- {img:"img/noticia3.png",text:"Gran nivel en la Poblamar League."}
+ {img:"img/noticia2.png",text:"Empieza la lucha por el Pichichi Poblamar League."},
+ {img:"img/noticia3.png",text:"Nivel altísimo en todas las posiciones."}
 ];
 let n=0;
 function showNews(){
- document.getElementById('newsImage').src=noticias[n].img;
- document.getElementById('newsText').textContent=noticias[n].text;
+  document.getElementById("newsImage").src=noticias[n].img;
+  document.getElementById("newsText").textContent=noticias[n].text;
 }
 function nextNews(){n=(n+1)%noticias.length;showNews()}
 function prevNews(){n=(n-1+noticias.length)%noticias.length;showNews()}
 showNews();
 setInterval(nextNews,3000);
 
-/* PICHICHI */
+/* ================= PICHICHI ================= */
 function renderPichichi(){
- const body=document.getElementById('pichichiBody');
- [...players].sort((a,b)=>b.goles-a.goles).forEach(p=>{
-  body.innerHTML+=`<tr><td>${p.nombre}</td><td>${p.goles}</td></tr>`;
- });
+  const body=document.getElementById("pichichiBody");
+  body.innerHTML="";
+  [...players]
+    .filter(p=>p.goles>0)
+    .sort((a,b)=>b.goles-a.goles)
+    .forEach(p=>{
+      body.innerHTML+=`
+        <tr>
+          <td>${p.nombre} ${p.apellido}</td>
+          <td>${p.goles}</td>
+        </tr>`;
+    });
 }
 renderPichichi();
 </script>
 
 </body>
 </html>
-
