@@ -633,13 +633,15 @@ window.addEventListener('load', () => {
   const popup = document.getElementById('jornadaPopup');
   const verBtn = document.getElementById('verJ2Btn');
   const closeBtn = document.getElementById('closeJ2Popup');
+  const audio = document.getElementById('musica'); // tu audio
 
-  // Botón "Ver" filtra por J2 y cierra popup
+  // Botón "Ver" filtra por J2, cierra popup y reproduce música
   verBtn.addEventListener('click', () => {
     document.getElementById('filterJornada').value = "2";
     jornadaSeleccionada = 2;
     filterAndRender();
     popup.style.display = 'none';
+    audio.play().catch(e => console.log("El audio necesita interacción del usuario", e));
   });
 
   // Cruz para cerrar sin filtrar
@@ -647,6 +649,7 @@ window.addEventListener('load', () => {
     popup.style.display = 'none';
   });
 });
+
 
 
 
