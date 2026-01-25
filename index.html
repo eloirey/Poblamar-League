@@ -106,6 +106,38 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
 <div id="mainContent">
 
+ <div id="jornadaPopup" style="
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:3000;
+    color:#fff;
+">
+  <div style="
+      background:#111;
+      padding:30px 25px;
+      border-radius:12px;
+      text-align:center;
+      max-width:350px;
+  ">
+    <p style="font-size:18px; margin-bottom:20px;">Los puntos de la J2 ya están disponibles.</p>
+    <button id="verJ2Btn" style="
+        padding:10px 20px;
+        border:none;
+        border-radius:6px;
+        background:#4caf50;
+        color:#fff;
+        cursor:pointer;
+        font-size:16px;
+    ">Ver</button>
+  </div>
+</div>
+
+
 
 <h1>Poblamar League</h1>
 
@@ -580,6 +612,20 @@ setInterval(() => {
 
 // Render inicial del Pichichi
 renderPichichi();
+
+
+ window.addEventListener('load', () => {
+  const popup = document.getElementById('jornadaPopup');
+  const verBtn = document.getElementById('verJ2Btn');
+
+  verBtn.addEventListener('click', () => {
+    // Filtrar por J2
+    document.getElementById('filterJornada').value = "2"; // poner J2 en el select
+    jornadaSeleccionada = 2;
+    filterAndRender(); // actualizar la grid
+    popup.style.display = 'none'; // ocultar popup
+  });
+});
 
 
 </script>
