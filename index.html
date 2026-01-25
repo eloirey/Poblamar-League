@@ -180,59 +180,227 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
 <script>
 const players = [
-  {nombre:"Toni",apellido:"Valls",edad:19,posicion:"Centrocampista",goles:4,asistencias:4,mvps:0,puntos:21,jornada:21,mvp:false,amarillas:0,rojas:0,foto:"img/Toni.png",puntosPorJornada:{1:21,2:0,3:0}},
-  {nombre:"Unai",apellido:"Martinez",edad:19,posicion:"Delantero",goles:0,asistencias:1,mvps:0,puntos:1,jornada:1,mvp:false,amarillas:0,rojas:0,foto:"img/Unai.png",puntosPorJornada:{1:1,2:0,3:0}},
-  {nombre:"Sergio",apellido:"Jiménez",edad:19,posicion:"Delantero",goles:1,asistencias:0,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:1,rojas:0,foto:"img/Sergio.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Jaime",apellido:"del Rio",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,mvps:0,puntos:12,jornada:12,mvp:false,amarillas:1,rojas:0,foto:"img/Jaime.png",puntosPorJornada:{1:12,2:0,3:0}},
-  {nombre:"Hicham",apellido:"",edad:19,posicion:"Defensa",goles:1,asistencias:0,mvps:0,puntos:5,jornada:5,mvp:false,amarillas:0,rojas:0,foto:"img/Hicham.png",puntosPorJornada:{1:5,2:0,3:0}},
-  {nombre:"Sergi",apellido:"Castaño",edad:19,posicion:"Delantero",goles:3,asistencias:2,mvps:0,puntos:17,jornada:17,mvp:false,amarillas:0,rojas:0,foto:"img/Sergi.png",puntosPorJornada:{1:17,2:0,3:0}},
-  {nombre:"David",apellido:"Fernandez",edad:19,posicion:"Centrocampista",goles:2,asistencias:5,mvps:1,puntos:20,jornada:20,mvp:true,amarillas:1,rojas:0,foto:"img/David.png",puntosPorJornada:{1:20,2:0,3:0}},
-  {nombre:"Eloi",apellido:"Rey",edad:19,posicion:"Defensa",goles:2,asistencias:0,mvps:0,puntos:12,jornada:12,mvp:false,amarillas:1,rojas:0,foto:"img/Eloi2.png",puntosPorJornada:{1:12,2:0,3:0}},
-  {nombre:"Axel",apellido:"",edad:18,posicion:"Centrocampista",goles:2,asistencias:0,mvps:0,puntos:7,jornada:7,mvp:false,amarillas:2,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:7,2:0,3:0}},
-  {nombre:"Arnau",apellido:"Castaño",edad:17,posicion:"Centrocampista",goles:2,asistencias:0,mvps:0,puntos:11,jornada:11,mvp:false,amarillas:0,rojas:0,foto:"img/Arnau.png",puntosPorJornada:{1:11,2:0,3:0}},
-  {nombre:"Jose",apellido:"Romero",edad:16,posicion:"Centrocampista",goles:0,asistencias:0,mvps:0,puntos:1,jornada:1,mvp:false,amarillas:0,rojas:0,foto:"img/Jose.png",puntosPorJornada:{1:1,2:0,3:0}},
-  {nombre:"Marc",apellido:"Gutta",edad:19,posicion:"Defensa",goles:0,asistencias:1,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:1,rojas:0,foto:"img/Marc.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Ibu",apellido:"",edad:19,posicion:"Defensa",goles:0,asistencias:2,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:0,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Moha",apellido:"",edad:19,posicion:"Centrocampista",goles:0,asistencias:0,mvps:0,puntos:-3,jornada:-3,mvp:false,amarillas:3,rojas:1,foto:"img/Moha.png",puntosPorJornada:{1:-3,2:0,3:0}},
-  {nombre:"Gerard",apellido:"",edad:19,posicion:"Centrocampista",goles:1,asistencias:0,mvps:0,puntos:4,jornada:4,mvp:false,amarillas:0,rojas:0,foto:"img/sinfoto2.png",puntosPorJornada:{1:4,2:0,3:0}},
-  {nombre:"Jan",apellido:"Martínez",edad:19,posicion:"Centrocampista",goles:2,asistencias:1,mvps:0,puntos:10,jornada:10,mvp:false,amarillas:0,rojas:0,foto:"img/Jan.png",puntosPorJornada:{1:10,2:0,3:0}},
-  {nombre:"Aitor",apellido:"Borrallo",edad:19,posicion:"Delantero",goles:3,asistencias:1,mvps:0,puntos:18,jornada:18,mvp:false,amarillas:0,rojas:0,foto:"img/Aitor3.png",puntosPorJornada:{1:18,2:0,3:0}}
+  {
+    nombre:"Toni", apellido:"Valls", edad:19, posicion:"Centrocampista",
+    foto:"img/Toni.png",
+    jornadas:{
+      1:{goles:4, asistencias:4, puntos:21, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Unai", apellido:"Martinez", edad:19, posicion:"Delantero",
+    foto:"img/Unai.png",
+    jornadas:{
+      1:{goles:0, asistencias:1, puntos:1, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Sergio", apellido:"Jiménez", edad:19, posicion:"Delantero",
+    foto:"img/Sergio.png",
+    jornadas:{
+      1:{goles:1, asistencias:0, puntos:4, amarillas:1, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Jaime", apellido:"del Rio", edad:19, posicion:"Centrocampista",
+    foto:"img/Jaime.png",
+    jornadas:{
+      1:{goles:2, asistencias:1, puntos:12, amarillas:1, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Hicham", apellido:"", edad:19, posicion:"Defensa",
+    foto:"img/Hicham.png",
+    jornadas:{
+      1:{goles:1, asistencias:0, puntos:5, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Sergi", apellido:"Castaño", edad:19, posicion:"Delantero",
+    foto:"img/Sergi.png",
+    jornadas:{
+      1:{goles:3, asistencias:2, puntos:17, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"David", apellido:"Fernandez", edad:19, posicion:"Centrocampista",
+    foto:"img/David.png",
+    jornadas:{
+      1:{goles:2, asistencias:5, puntos:20, amarillas:1, rojas:0, mvp:true},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Eloi", apellido:"Rey", edad:19, posicion:"Defensa",
+    foto:"img/Eloi2.png",
+    jornadas:{
+      1:{goles:2, asistencias:0, puntos:12, amarillas:1, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Axel", apellido:"", edad:18, posicion:"Centrocampista",
+    foto:"img/sinfoto2.png",
+    jornadas:{
+      1:{goles:2, asistencias:0, puntos:7, amarillas:2, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Arnau", apellido:"Castaño", edad:17, posicion:"Centrocampista",
+    foto:"img/Arnau.png",
+    jornadas:{
+      1:{goles:2, asistencias:0, puntos:11, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Jose", apellido:"Romero", edad:16, posicion:"Centrocampista",
+    foto:"img/Jose.png",
+    jornadas:{
+      1:{goles:0, asistencias:0, puntos:1, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Marc", apellido:"Gutta", edad:19, posicion:"Defensa",
+    foto:"img/Marc.png",
+    jornadas:{
+      1:{goles:0, asistencias:1, puntos:4, amarillas:1, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Ibu", apellido:"", edad:19, posicion:"Defensa",
+    foto:"img/sinfoto2.png",
+    jornadas:{
+      1:{goles:0, asistencias:2, puntos:4, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Moha", apellido:"", edad:19, posicion:"Centrocampista",
+    foto:"img/Moha.png",
+    jornadas:{
+      1:{goles:0, asistencias:0, puntos:-3, amarillas:3, rojas:1, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Gerard", apellido:"", edad:19, posicion:"Centrocampista",
+    foto:"img/sinfoto2.png",
+    jornadas:{
+      1:{goles:1, asistencias:0, puntos:4, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Jan", apellido:"Martínez", edad:19, posicion:"Centrocampista",
+    foto:"img/Jan.png",
+    jornadas:{
+      1:{goles:2, asistencias:1, puntos:10, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  },
+  {
+    nombre:"Aitor", apellido:"Borrallo", edad:19, posicion:"Delantero",
+    foto:"img/Aitor3.png",
+    jornadas:{
+      1:{goles:3, asistencias:1, puntos:18, amarillas:0, rojas:0, mvp:false},
+      2:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false},
+      3:{goles:0, asistencias:0, puntos:0, amarillas:0, rojas:0, mvp:false}
+    }
+  }
 ];
+
 
 const grid = document.getElementById('playersGrid');
 let jornadaSeleccionada = null;
 
+ function calcularTotales(p){
+  let totales = {
+    goles: 0,
+    asistencias: 0,
+    puntos: 0,
+    amarillas: 0,
+    rojas: 0,
+    mvps: 0
+  };
+
+  for (let j in p.jornadas) {
+    const jornada = p.jornadas[j];
+    totales.goles += jornada.goles;
+    totales.asistencias += jornada.asistencias;
+    totales.puntos += jornada.puntos;
+    totales.amarillas += jornada.amarillas;
+    totales.rojas += jornada.rojas;
+    if (jornada.mvp) totales.mvps++;
+  }
+
+  return totales;
+}
+
+
 // Color según puntos
 function puntosColor(p){
   if(jornadaSeleccionada){
-    let puntos = p.puntosPorJornada[jornadaSeleccionada];
-    if(puntos === 0) return '#9e9e9e';
-    if(p.mvp && jornadaSeleccionada===1) return '#ffeb3b'; // MVP de esa jornada
-    if(puntos<1) return '#f44336';
-    if(puntos<=5) return '#ff9800';
-    if(puntos<=9) return '#4caf50';
+    const j = p.jornadas[jornadaSeleccionada];
+    if(!j) return '#9e9e9e';
+    if(j.puntos === 0) return '#9e9e9e';
+    if(j.mvp) return '#ffeb3b';
+    if(j.puntos < 1) return '#f44336';
+    if(j.puntos <= 5) return '#ff9800';
+    if(j.puntos <= 9) return '#4caf50';
     return '#2196f3';
   } else {
-    if(p.mvp) return '#ffeb3b';
-    if(p.puntos<1) return '#f44336';
-    if(p.puntos<=5) return '#ff9800';
-    if(p.puntos<=9) return '#4caf50';
+    const t = calcularTotales(p);
+    if(t.puntos < 1) return '#f44336';
+    if(t.puntos <= 5) return '#ff9800';
+    if(t.puntos <= 9) return '#4caf50';
     return '#2196f3';
   }
 }
 
+
 function renderPlayers(list){
   grid.innerHTML = '';
   list.forEach(p=>{
-    let puntos, esMVP;
-    if(jornadaSeleccionada){
-      puntos = p.puntosPorJornada[jornadaSeleccionada] || 0;
-      esMVP = p.mvp && jornadaSeleccionada===1;
-      if(puntos===0) puntos='-';
-    } else {
-      puntos=p.puntos;
-      esMVP=p.mvp;
-    }
+   const totales = calcularTotales(p);
+   let puntos = '-';
+let esMVP = false;
+
+if (jornadaSeleccionada) {
+  const j = p.jornadas[jornadaSeleccionada];
+  if (j) {
+    puntos = j.puntos === 0 ? '-' : j.puntos;
+    esMVP = j.mvp;
+  }
+} else {
+  puntos = totales.puntos;
+}
+
     const color = puntos==='-'?'#9e9e9e':puntosColor(p);
     const card = document.createElement('div');
     card.className='card';
@@ -251,16 +419,21 @@ function renderPlayers(list){
 }
 
 function openModal(p){
+  const t = calcularTotales(p);
+
   document.getElementById('modalBody').innerHTML=`
     <h2>${p.nombre} ${p.apellido}</h2>
     <p><b>Edad:</b> ${p.edad}</p>
     <p><b>Posición:</b> ${p.posicion}</p>
-    <p><b>Goles:</b> ${p.goles}</p>
-    <p><b>Asistencias:</b> ${p.asistencias}</p>
-    <p><b>MVPs:</b> ${p.mvps}</p>
-    <p><b>Puntos totales:</b> ${p.puntos}</p>
-    <p><b>Amarillas:</b> ${p.amarillas}</p>
-    <p><b>Rojas:</b> ${p.rojas}</p>
+
+    <hr>
+
+    <p><b>Goles:</b> ${t.goles}</p>
+    <p><b>Asistencias:</b> ${t.asistencias}</p>
+    <p><b>Puntos totales:</b> ${t.puntos}</p>
+    <p><b>MVPs:</b> ${t.mvps}</p>
+    <p><b>Amarillas:</b> ${t.amarillas}</p>
+    <p><b>Rojas:</b> ${t.rojas}</p>
   `;
   document.getElementById('playerModal').style.display='flex';
 }
@@ -284,18 +457,40 @@ function filterAndRender(){
   if(position) filtered=filtered.filter(p=>p.posicion===position);
   const jornadaVal = filterJornada.value;
   jornadaSeleccionada = jornadaVal?Number(jornadaVal):null;
-  if(jornadaSeleccionada) filtered=filtered.filter(p=>p.puntosPorJornada[jornadaSeleccionada]!==undefined);
+ if (jornadaSeleccionada) {
+  filtered = filtered.filter(p => p.jornadas[jornadaSeleccionada]?.puntos !== 0);
+
+}
+
   const sort = sortPoints.value;
-  if(sort==='asc'){ filtered=filtered.slice().sort((a,b)=>{
-    let pa = jornadaSeleccionada?a.puntosPorJornada[jornadaSeleccionada]:a.puntos;
-    let pb = jornadaSeleccionada?b.puntosPorJornada[jornadaSeleccionada]:b.puntos;
-    return pa-pb;
-  });}
-  if(sort==='desc'){ filtered=filtered.slice().sort((a,b)=>{
-    let pa = jornadaSeleccionada?a.puntosPorJornada[jornadaSeleccionada]:a.puntos;
-    let pb = jornadaSeleccionada?b.puntosPorJornada[jornadaSeleccionada]:b.puntos;
-    return pb-pa;
-  });}
+  if (sort === 'asc') {
+  filtered = filtered.slice().sort((a, b) => {
+    const pa = jornadaSeleccionada
+      ? a.jornadas[jornadaSeleccionada]?.puntos || 0
+      : calcularTotales(a).puntos;
+
+    const pb = jornadaSeleccionada
+      ? b.jornadas[jornadaSeleccionada]?.puntos || 0
+      : calcularTotales(b).puntos;
+
+    return pa - pb;
+  });
+}
+
+  if (sort === 'desc') {
+  filtered = filtered.slice().sort((a, b) => {
+    const pa = jornadaSeleccionada
+      ? a.jornadas[jornadaSeleccionada]?.puntos || 0
+      : calcularTotales(a).puntos;
+
+    const pb = jornadaSeleccionada
+      ? b.jornadas[jornadaSeleccionada]?.puntos || 0
+      : calcularTotales(b).puntos;
+
+    return pb - pa;
+  });
+}
+
   renderPlayers(filtered);
 }
 
@@ -329,24 +524,25 @@ setInterval(() => {
   const tbody = document.querySelector('#pichichiTable tbody');
   tbody.innerHTML = '';
 
-  // Ordenar por goles (descendente)
   const goleadores = players
-    .filter(p => p.goles > 0)
-    .slice()
-    .sort((a, b) => b.goles - a.goles);
+    .map(p => {
+      const t = calcularTotales(p);
+      return { ...p, totalGoles: t.goles };
+    })
+    .filter(p => p.totalGoles > 0)
+    .sort((a, b) => b.totalGoles - a.totalGoles);
 
   goleadores.forEach((p, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-  <td>${index + 1}</td>
-  <td>${p.nombre} ${p.apellido}</td>
-  <td><b>${p.goles}</b></td>
-`;
-
-
+      <td>${index + 1}</td>
+      <td>${p.nombre} ${p.apellido}</td>
+      <td><b>${p.totalGoles}</b></td>
+    `;
     tbody.appendChild(row);
   });
 }
+
 
 // Render inicial del Pichichi
 renderPichichi();
