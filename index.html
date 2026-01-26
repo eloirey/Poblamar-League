@@ -300,6 +300,21 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   </table>
 </div>
 
+ <div class="pichichi-board">
+  <h2>Máximos Asistentes</h2>
+  <table id="asistentesTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Jugador</th>
+        <th>Asistencias</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+
 
 <div class="modal" id="playerModal">
   <div class="modal-content">
@@ -728,6 +743,32 @@ setInterval(() => {
 
 // Render inicial del Pichichi
 renderPichichi();
+
+function renderAsistentes() {
+  const tbody = document.querySelector('#asistentesTable tbody');
+  tbody.innerHTML = '';
+
+  const topAsistentes = players
+    .map(p => {
+      const t = calcularTotales(p);
+      return { ...p, totalAsistencias: t.asistencias };
+    })
+    .filter(p => p.totalAsistencias > 0)
+    .sort((a,b) => b.totalAsistencias - a.totalAsistencias);
+
+  topAsistentes.forEach((p,index)=>{
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${p.nombre} ${p.apellido}</td>
+      <td><b>${p.totalAsistencias}</b></td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+// Render inicial
+renderAsistentes();
 
 
 window.addEventListener('load', () => {
