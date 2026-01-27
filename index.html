@@ -29,47 +29,70 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 .password-box button{padding:8px 15px;border-radius:6px;border:none;und:#4caf50;color:#fff;cursor:pointer;}
 #mainContent.locked{filter:blur(8px);pointer-events:none;user-select:none;}
 
- .news-board {
-  max-width: 900px;
-  margin: 0 auto 30px auto;
-  und: #ffffff;
-  border-radius: 14px;
-  padding: 15px 20px;
-  color: #000;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+ /* CONTENEDOR DE NOTICIAS */
+.news-board {
+  background: linear-gradient(180deg, #0b0b0b, #151515);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 800px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  min-height: 170px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.news-board h2 {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
+/* CADA NOTICIA */
 .news-item {
-  display: none;
-  align-items: center;
-  gap: 15px;
-}
-
-.news-item.active {
   display: flex;
+  align-items: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  position: absolute;
 }
 
+/* NOTICIA ACTIVA */
+.news-item.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+}
+
+/* IMAGEN */
 .news-item img {
-  width: 220px;
-  height: 140px;
+  width: 85px;
+  height: 85px;
+  border-radius: 12px;
   object-fit: cover;
-  border-radius: 14px;
+  border: 2px solid gold;
 }
 
-
+/* TEXTO */
 .news-item p {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.4;
 }
+
+/* ETIQUETA ESPN */
+.news-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, gold, #ffeb3b);
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
 .pichichi-board {
   max-width: 700px;
   margin: 40px auto 0 auto; /* espacio con lo de arriba */
-  und: #ffffff;
+  background: #ffffff;
   border-radius: 14px;
   padding: 20px;
   color: #000;
@@ -94,12 +117,12 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 }
 
 .pichichi-board th {
-  und: #f5f5f5;
+  background: #f5f5f5;
   font-weight: bold;
 }
 
 .pichichi-board tr:nth-child(even) {
-  und: #fafafa;
+  background: #fafafa;
 }
 
 /* =========================
@@ -135,7 +158,7 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   position: absolute;
   top: -12px;
   left: -12px;
-  und: linear-gradient(135deg, gold, #ff9800);
+  background: linear-gradient(135deg, gold, #ff9800);
   color: #000;
   font-weight: 900;
   font-size: 11px;
@@ -234,6 +257,23 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
     font-size:14px;
     padding:8px 15px;
   }
+}
+
+ .news-btn {
+  background: #111;
+  color: gold;
+  border: 1px solid gold;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 6px;
+  transition: all 0.2s ease;
+}
+
+.news-btn:hover {
+  background: gold;
+  color: #000;
 }
 
  
@@ -341,29 +381,42 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
 
   <div class="news-board">
-  <h2>Noticias</h2>
-   
+  <h2 style="text-align:center; margin-top:0;">Noticias</h2>
+
+  <div style="text-align:center; margin-bottom:12px;">
+    <button class="news-btn" onclick="prevNews()">◀</button>
+    <button class="news-btn" onclick="nextNews()">▶</button>
+  </div>
+
   <div class="news-item active">
-    <img src="img/DavidMVP.png" alt="Noticia 1">
-    <p><b>David Fernández MVP</b><br>Gran actuación en la Jornada 1 con 20 puntos.</p>
+    <img src="img/jugador1.jpg">
+    <p>
+      <span class="news-tag">J1 · MVP</span><br>
+      <b>David Fernández se lleva el MVP</b><br>
+      20 puntos, liderazgo total y victoria clave.
+    </p>
   </div>
-   <div class="news-item">
-    <img src="https://i.pinimg.com/originals/77/97/19/7797190f0f3efd9d5b0b96963d97ed5a.gif" alt="Noticia 2">
-    <p><b>¡Tenemos TikTok!</b><br>Ya puedes seguirnos en nuestra cuenta de TikTok. Contenido de calidad muy pronto.</p>
-  </div>
+
   <div class="news-item">
-    <img src="https://www.piscinasferromar.com/blog/wp-content/uploads/2022/09/agua-piscina.jpg" alt="Noticia 3">
-    <p><b>¿Fútbol o natación?</b><br>Jaime acusado de "tirarse a la piscina" en la J2.</p>
+    <img src="img/equipo1.jpg">
+    <p>
+      <span class="news-tag">RESULTADO</span><br>
+      <b>Atlético Poblamar arrasa</b><br>
+      Victoria contundente por 6-1.
+    </p>
   </div>
-   <div class="news-item">
-    <img src="img/CamaLIDL.png" alt="Noticia 4">
-    <p><b>Joan Cama reaparece… ¡trabajando en el LIDL!</b><br>Joan Cama ha sido visto en las últimas horas en el LIDL, dando todo en los pasillos y cajas. Su debut a la Poblamar League queda pendiente…</p>
-  </div>
+
   <div class="news-item">
-    <img src="https://media-cdn.tripadvisor.com/media/photo-s/19/4d/fe/39/hospital-de-sant-pablo.jpg" alt="Noticia 5">
-    <p><b>Un retorno muy esperado</b><br>Jeremy se somete a pruebas en el Hospital Santa Tecla: su evolución decidirá su disponibilidad en la J3.</p>
+    <img src="img/lesion.jpg">
+    <p>
+      <span class="news-tag">ÚLTIMA HORA</span><br>
+      <b>Jugador clave es duda</b><br>
+      Molestias musculares lo alejan de la J2.
+    </p>
   </div>
 </div>
+
+
 
 
 <div class="filters">
@@ -810,16 +863,29 @@ modal.addEventListener('click', function(e){
 
 
 /* =========================
-   Noticias automáticas
+   NOTICIAS – ESPN STYLE
    ========================= */
-let currentNews = 0;
 const newsItems = document.querySelectorAll('.news-item');
+let currentNews = 0;
 
-setInterval(() => {
-  newsItems[currentNews].classList.remove('active');
+function showNews(index){
+  newsItems.forEach(n => n.classList.remove('active'));
+  newsItems[index].classList.add('active');
+}
+
+function nextNews(){
   currentNews = (currentNews + 1) % newsItems.length;
-  newsItems[currentNews].classList.add('active');
-}, 6000);
+  showNews(currentNews);
+}
+
+function prevNews(){
+  currentNews = (currentNews - 1 + newsItems.length) % newsItems.length;
+  showNews(currentNews);
+}
+
+setInterval(nextNews, 6000);
+
+
 
  function renderPichichi() {
   const tbody = document.querySelector('#pichichiTable tbody');
