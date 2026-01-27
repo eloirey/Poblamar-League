@@ -247,35 +247,27 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
  .arrow-indicator {
   position: absolute;
-  top: 8px;       /* más visible */
+  top: 8px;       /* ajusta según quieras que esté */
   left: 50%;
   transform: translateX(-50%) rotate(0deg);
-  width: 12px;    /* ancho de la flecha */
-  height: 18px;   /* largo para que se vea la punta */
-  background: transparent;
-  z-index: 3;
+  width: 4px;     /* grosor del cuerpo */
+  height: 20px;   /* largo del cuerpo */
+  background: var(--arrow-color, #fff);
+  z-index: 5;
 }
 
-.arrow-indicator::before {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  margin: 0 auto;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom-color: var(--arrow-color);
-}
-
+/* Punta de flecha */
 .arrow-indicator::after {
   content: '';
-  display: block;
-  width: 4px;      /* cuerpo de la flecha */
-  height: 6px;
-  background: var(--arrow-color);  /* mismo color */
-  margin: -6px auto 0 auto;
-  border-radius: 2px;
+  position: absolute;
+  bottom: 100%;    /* encima del cuerpo */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid var(--arrow-color, #fff);
 }
+
 
  
 
@@ -883,13 +875,11 @@ function renderPlayers(list){
     `;
     card.onclick = () => openModal(p);
 
-    // ✅ Flecha de rendimiento
     const {deg, color: arrowColor} = flechaRendimiento(p);
     const arrow = document.createElement('div');
     arrow.className = 'arrow-indicator';
     arrow.style.transform = `translateX(-50%) rotate(${deg}deg)`;
     arrow.style.setProperty('--arrow-color', arrowColor);
-
     card.appendChild(arrow);
 
     // ✅ MVP badge
