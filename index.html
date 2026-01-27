@@ -247,17 +247,36 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
  .arrow-indicator {
   position: absolute;
-  top: 5px;        /* ajusta si quieres más arriba o abajo */
+  top: 8px;       /* más visible */
   left: 50%;
   transform: translateX(-50%) rotate(0deg);
+  width: 12px;    /* ancho de la flecha */
+  height: 18px;   /* largo para que se vea la punta */
+  background: transparent;
+  z-index: 3;
+}
+
+.arrow-indicator::before {
+  content: '';
+  display: block;
   width: 0;
   height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 12px solid #2196f3; /* color dinámico se pone por JS */
-  z-index: 2;
-  transition: transform 0.3s ease, border-bottom-color 0.3s ease;
+  margin: 0 auto;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom-color: var(--arrow-color);
 }
+
+.arrow-indicator::after {
+  content: '';
+  display: block;
+  width: 4px;      /* cuerpo de la flecha */
+  height: 6px;
+  background: var(--arrow-color);  /* mismo color */
+  margin: -6px auto 0 auto;
+  border-radius: 2px;
+}
+
  
 
 /* Animaciones */
@@ -869,7 +888,8 @@ function renderPlayers(list){
     const arrow = document.createElement('div');
     arrow.className = 'arrow-indicator';
     arrow.style.transform = `translateX(-50%) rotate(${deg}deg)`;
-    arrow.style.borderBottomColor = arrowColor;
+    arrow.style.setProperty('--arrow-color', arrowColor);
+
     card.appendChild(arrow);
 
     // ✅ MVP badge
