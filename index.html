@@ -280,6 +280,32 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.2s;
 }
 
+ .loading-text {
+  font-size: 16px;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.loading-text span {
+  animation: blink 1.4s infinite both;
+}
+
+.loading-text span:nth-child(2) { animation-delay: 0.2s; }
+.loading-text span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+ @media (max-width: 480px) {
+  .loading-text {
+    font-size: 14px;
+  }
+}
+
  
 </style>
 </head>
@@ -289,6 +315,9 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 <div id="splashScreen">
   <div class="splash-content">
     <img src="img/Logo.gif" alt="Poblamar League Logo" id="splashLogo">
+    <div class="loading-text">
+    Cargando<span>.</span><span>.</span><span>.</span>
+  </div>
     <p id="splashPhrase"></p>
   </div>
 </div>
