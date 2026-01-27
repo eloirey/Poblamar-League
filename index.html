@@ -1069,15 +1069,38 @@ const splashPhrase = document.getElementById('splashPhrase');
 const splash = document.getElementById('splashScreen');
 
 // Elegir frase aleatoria
-splashPhrase.textContent = splashPhrases[Math.floor(Math.random() * splashPhrases.length)];
+let availablePhrases = [...splashPhrases]; // copiamos el array
+let phraseInterval;
+
+// función para cambiar frase sin repetir
+function changeSplashPhrase() {
+  if (availablePhrases.length === 0) return;
+
+  const index = Math.floor(Math.random() * availablePhrases.length);
+  splashPhrase.textContent = availablePhrases[index];
+  availablePhrases.splice(index, 1); // eliminar la usada
+}
+
+// primera frase inmediata
+changeSplashPhrase();
+
+// cambiar cada 2 segundos
+phraseInterval = setInterval(changeSplashPhrase, 3000);
+
 
 // Duración 3 segundos + fade
 window.addEventListener('load', () => {
   setTimeout(() => {
+    clearInterval(phraseInterval); // ⛔ parar frases
     splash.style.opacity = '0';
-    setTimeout(() => { splash.style.display = 'none'; }, 1000); // quitar del DOM
+
+    setTimeout(() => { 
+      splash.style.display = 'none'; 
+    }, 1000);
+
   }, 6000);
 });
+
 
 // ======== Temporizador =========
 function getNextFriday17() {
