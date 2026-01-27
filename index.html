@@ -40,9 +40,22 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   width: 100%;
   height: 210px;
   object-fit: contain;
-  margin: 8px auto 12px auto;
-  filter: drop-shadow(0 12px 16px rgba(0,0,0,0.6));
+  margin: 6px auto 10px auto;
+  filter: drop-shadow(0 8px 10px rgba(0,0,0,0.4));
+  position: relative;
+  z-index: 1;
 }
+
+/* Brillo que apunta hacia arriba */
+.card img::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 12px; /* mismo que la imagen si quieres */
+  background: linear-gradient(to top, rgba(255,255,255,0.25), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
 
 .card h3 {
   margin: -3px 5px 8px 5px;
@@ -53,16 +66,7 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 }
 
 .stats {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(6px);
-  padding: 5px 8px;
-  border-radius: 8px;
-  font-size: 12px;
-  color: #fff;
-  font-weight: 600;
+  display: none;
 }
 
 .points-square {
