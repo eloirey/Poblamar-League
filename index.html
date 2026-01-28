@@ -392,10 +392,8 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 260px;
-  max-height: 360px;
-  perspective: 1000px;
 }
+
 
 @media (max-width: 480px) {
   #animationContainer {
@@ -492,14 +490,16 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
 /* ===== ANIMACIÓN CARTA (MISMO DISEÑO QUE GRID) ===== */
 
+/* ===== CARTA ANIMADA: MISMAS DIMENSIONES QUE EL GRID ===== */
 .card-anim {
   position: absolute;
-  inset: 0;
-  margin: auto;
-  transform: scale(0.75) translateY(40px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -40px);
   opacity: 0;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
+
 
 /* Imagen idéntica a la principal */
 .card-anim img {
@@ -507,12 +507,13 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
   object-fit: contain;
 }
 
-/* Móvil */
 @media (max-width: 480px) {
   .card-anim {
-    transform: scale(0.72) translateY(0);
+    width: 220px;
+    height: 300px;
   }
 }
+
 
 
   
@@ -1423,10 +1424,12 @@ card.innerHTML = `
 
 
     container.appendChild(card);
-    requestAnimationFrame(() => {
+
+requestAnimationFrame(() => {
   card.style.opacity = '1';
-  card.style.transform = 'scale(1) translateY(0)';
+  card.style.transform = 'translate(-50%, -50%)';
 });
+
 
 
     setTimeout(()=>{
