@@ -389,10 +389,13 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 }
 
 #animationContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 
 @media (max-width: 480px) {
@@ -492,13 +495,11 @@ input,select{padding:8px 12px;font-size:14px;border-radius:6px;border:1px solid 
 
 /* ===== CARTA ANIMADA: MISMAS DIMENSIONES QUE EL GRID ===== */
 .card-anim {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -40px);
   opacity: 0;
+  transform: translateY(40px);
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
+
 
 
 /* Imagen idéntica a la principal */
